@@ -1,3 +1,0 @@
-class MonthsController < ApplicationController
-
-end
