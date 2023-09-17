@@ -1,5 +1,5 @@
 class Year < ApplicationRecord
-  belongs_to :calendar
+  has_one :calendar
   has_many :months
   has_many :days, through: :months
   has_many :notes, through: :days
