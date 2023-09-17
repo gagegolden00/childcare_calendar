@@ -1,6 +1,6 @@
-
+desc "create days"
 namespace :populate do
-  task days: :environment do
+  task days: :test do
     day_names = [
       'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
     ]

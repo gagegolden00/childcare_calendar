@@ -4,5 +4,5 @@ class Month < ApplicationRecord
   has_many :notes, through: :days
 
   validates :month_name, presence: true
-  validates :month_number, prescense: true
+  validates :month_number, presence: true
 end

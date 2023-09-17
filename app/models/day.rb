@@ -3,5 +3,5 @@ class Day < ApplicationRecord
   has_many :note
 
   validates :day_number, presence: true
-  validates :day_name, prescense: true
+  validates :day_name, presence: true
 end

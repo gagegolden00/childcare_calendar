@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_184903) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_17_192735) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_184903) do
   create_table "days", force: :cascade do |t|
     t.integer "day_number"
     t.string "day_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "month_id", null: false
     t.integer "status", default: 0, null: false
     t.index ["month_id"], name: "index_days_on_month_id"
@@ -38,8 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_184903) do
   create_table "months", force: :cascade do |t|
     t.integer "month_number"
     t.string "month_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "year_id", null: false
     t.index ["year_id"], name: "index_months_on_year_id"
   end
@@ -61,8 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_184903) do
 
   create_table "years", force: :cascade do |t|
     t.integer "year_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "days", "months"

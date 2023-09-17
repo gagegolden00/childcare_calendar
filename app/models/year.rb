@@ -4,5 +4,5 @@ class Year < ApplicationRecord
   has_many :days, through: :months
   has_many :notes, through: :days
 
-  validates :year_number, prescense: true
+  validates :year_number, presence: true
 end
