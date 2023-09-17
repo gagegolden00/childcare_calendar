@@ -2,7 +2,7 @@ require_relative '../../config/environment'
 
 desc "create years"
 namespace :populate do
-  task years: :test do
+  task years: :environment do
     start_year = 1900
     end_year = 2500
     year_number = start_year

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_192735) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_17_195052) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,24 +27,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_192735) do
   end
 
   create_table "days_months", id: false, force: :cascade do |t|
-    t.bigint "month_id", null: false
     t.bigint "day_id", null: false
-    t.index ["day_id", "month_id"], name: "index_days_months_on_day_id_and_month_id"
-    t.index ["month_id", "day_id"], name: "index_days_months_on_month_id_and_day_id"
+    t.bigint "month_id", null: false
+    t.index ["day_id", "month_id"], name: "index_days_months_on_day_id_and_month_id", unique: true
+    t.index ["month_id", "day_id"], name: "index_days_months_on_month_id_and_day_id", unique: true
   end
 
   create_table "months", force: :cascade do |t|
     t.integer "month_number"
     t.string "month_name"
-    t.bigint "year_id", null: false
-    t.index ["year_id"], name: "index_months_on_year_id"
-  end
-
-  create_table "months_years", id: false, force: :cascade do |t|
-    t.bigint "year_id", null: false
-    t.bigint "month_id", null: false
-    t.index ["month_id", "year_id"], name: "index_months_years_on_month_id_and_year_id"
-    t.index ["year_id", "month_id"], name: "index_months_years_on_year_id_and_month_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -59,7 +50,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_192735) do
     t.integer "year_number"
   end
 
+  create_table "years_months", id: false, force: :cascade do |t|
+    t.bigint "year_id", null: false
+    t.bigint "month_id", null: false
+    t.index ["month_id", "year_id"], name: "index_years_months_on_month_id_and_year_id", unique: true
+    t.index ["year_id", "month_id"], name: "index_years_months_on_year_id_and_month_id", unique: true
+  end
+
   add_foreign_key "days", "months"
-  add_foreign_key "months", "years"
+  add_foreign_key "days_months", "days"
+  add_foreign_key "days_months", "months"
   add_foreign_key "notes", "years"
+  add_foreign_key "years_months", "months"
+  add_foreign_key "years_months", "years"
 end

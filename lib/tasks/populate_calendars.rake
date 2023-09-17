@@ -1,6 +1,6 @@
 desc "create calendars"
 namespace :populate do
-  task calendars: :test do
+  task calendars: :environment do
 
   end
 end
